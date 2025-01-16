@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async ()=>{
     try{
-        const conn = mongoose.connect("mongodb://localhost:27017/DevFund",{
+        const conn = mongoose.connect(process.env.MONGO_URL,{
             useNewUrlParser : true,
         })
     }
