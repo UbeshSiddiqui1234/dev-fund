@@ -25,16 +25,24 @@ export const authOptions = NextAuth({
                 // connect to database 
                 await connectDB()
 
-                const currentUser = await User.findOne({email:user.email})
-                if(!currentUser){
-                    // create new user
-                    const newUser = await User.create({
-                        username: user.email.split("@")[0],
-                        email: user.email,
-                    })
-                    user.name = newUser.username
-                    await newUser.save()
-                }              
+                // const currentUser = await User.findOne({email:user.email})
+                // if(!currentUser){
+                //     // create new user
+                //     const newUser = await User.create({
+                //         username: user.email.split("@")[0],
+                //         email: user.email,
+                //     })
+                //     user.name = newUser.username
+                //     await newUser.save()
+                // }     
+                
+                const updatedUser = await User.findOneAndUpdate(
+                    { email: user.email },
+                    { $setOnInsert: { username: user.email.split("@")[0], email: user.email } },
+                    { new: true, upsert: true }
+                );
+
+                user.name = updatedUser.username;                         
             }
             return true;
         },
