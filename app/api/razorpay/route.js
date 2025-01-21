@@ -20,7 +20,7 @@ export const POST = async(req)=>{
 
     if(isValid){
         let updatedPayment = await payment.findOneAndUpdate({oid: body.razorpay_order_id},{done:true}, {new: true})
-        return NextResponse.redirect(`http://${process.env.NEXT_PUBLIC_URL}/${updatedPayment.reciever}?paymentdone=true`)
+        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/${updatedPayment.reciever}?paymentdone=true`)
     }
     else{
         return NextResponse.json({sucess: false, message: "Internal server Error"})
