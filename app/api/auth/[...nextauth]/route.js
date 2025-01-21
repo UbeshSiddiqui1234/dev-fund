@@ -34,8 +34,8 @@ export const authOptions = NextAuth({
                 //     })
                 //     user.name = newUser.username
                 //     await newUser.save()
-                // }     
-                
+                // }
+
                 const updatedUser = await User.findOneAndUpdate(
                     { email: user.email },
                     { $setOnInsert: { username: user.email.split("@")[0], email: user.email } },
