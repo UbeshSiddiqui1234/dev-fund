@@ -37,7 +37,7 @@ const Navbar = ()=>{
                     {showDropdown && <div onMouseLeave={()=>setShowDropdown(false)} className="absolute sm:right-5 right-0 bg-gray-600 flex flex-col items-center justify-center py-2.5 w-[150px] rounded-lg z-50">
                         <Link onClick={()=>setShowDropdown(!showDropdown)} className="hover:bg-gray-500 flex items-center py-1.5 px-3 w-full" href={'/'}>Home</Link>
                         <Link onClick={()=>setShowDropdown(!showDropdown)} className="hover:bg-gray-500 flex items-center py-1.5 px-3 w-full" href={'/dashboard'}>Dashbaord</Link>
-                        <Link onClick={()=>setShowDropdown(!showDropdown)} className="hover:bg-gray-500 flex items-center py-1.5 px-3 w-full" href={`/${session.user.name}`}>Your page</Link>
+                        <Link onClick={()=>setShowDropdown(!showDropdown)} className="hover:bg-gray-500 flex items-center py-1.5 px-3 w-full" href={`/${encodedURIComponent(session.user.name)}`}>Your page</Link>
                         <Link className="hover:bg-gray-500 flex items-center py-1.5 px-3 w-full" href={`/creators`}>Creators</Link>
                         <div className="hover:bg-gray-500 flex items-center py-1.5 px-3 w-full" 
                         onClick={()=>{
